@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSP Truck Dashboard</title>
+    <link rel="stylesheet" href="s.css">
+</head>
+<body>
+
+    <h1>SSP Truck Dashboard</h1>
+
+    <div class="filters">
+        <input type="text" id="lane-search" placeholder="Search by Lane" oninput="filterTable()">
+        <input type="text" id="cpt-filter" placeholder="Enter CPT" oninput="filterTable()">
+    </div>
+
+    <div class="dashboard">
+        <div class="box">
+            <h2>Completed Trucks</h2>
+            <p id="completed-count">0</p>
+        </div>
+        <div class="box">
+            <h2>Valid Trucks</h2>
+            <p id="valid-count">0</p>
+        </div>
+        <div class="box">
+            <h2>Equipment 53ft</h2>
+            <p id="count-53">0</p>
+        </div>
+        <div class="box">
+            <h2>Equipment 26ft</h2>
+            <p id="count-26">0</p>
+        </div>
+    </div>
+
+    <button class="copy-btn" onclick="copyData()">Copy Visible Non-Completed Trucks</button>
+
+    <table id="truck-data">
+        <thead>
+            <tr>
+                <th>Status</th>
+                <th>Truck Info</th>
+                <th>Location</th>
+                <th>VRID</th>
+                <th>Equipment Type</th>
+                <th>Carrier</th>
+                <th>Trailer</th>
+                <th>P</th>
+                <th>C</th>
+                <th>TRT</th>
+                <th>SDT</th>
+                <th>CPT</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Paste all your truck rows here -->
+             <tr><td>Completed</td><td>SIL7->HLA6-BNXT</td><td>DD301</td><td>301PQ85L4</td><td>53</td><td>ABC</td><td>TRLR501</td><td>20</td><td>50</td><td>12-Feb-25 10:00</td><td>12-Feb-25 10:00</td><td>12-Feb-25 12:00</td></tr>
+<tr><td>Scheduled</td><td>SIL7->HLA6-BNXT</td><td>DD302</td><td>302PQ85L4</td><td>26</td><td>DEF</td><td>TRLR502</td><td>15</td><td>40</td><td>12-Feb-25 11:00</td><td>12-Feb-25 11:00</td><td>12-Feb-25 12:00</td></tr>
+<tr><td>Loading in Progress</td><td>SIL7->HLA6-BNXT</td><td>DD303</td><td>303PQ85L4</td><td>53</td><td>GHI</td><td>TRLR503</td><td>18</td><td>45</td><td>12-Feb-25 11:30</td><td>12-Feb-25 11:30</td><td>12-Feb-25 12:00</td></tr>
+<tr><td>Trailer Attached</td><td>SIL7->HLA6-BNXT</td><td>DD304</td><td>304PQ85L4</td><td>26</td><td>JKL</td><td>TRLR504</td><td>12</td><td>35</td><td>12-Feb-25 11:45</td><td>12-Feb-25 11:45</td><td>12-Feb-25 12:00</td></tr>
+<tr><td>Completed</td><td>SIL7->HLA6-BNXT</td><td>DD305</td><td>305PQ85L4</td><td>53</td><td>LMN</td><td>TRLR505</td><td>22</td><td>48</td><td>12-Feb-25 12:00</td><td>12-Feb-25 12:00</td><td>12-Feb-25 12:00</td></tr>
+
+<tr><td>Scheduled</td><td>LGA9->KJFK</td><td>DD306</td><td>306PQ85L4</td><td>53</td><td>OPQ</td><td>TRLR506</td><td>20</td><td>50</td><td>13-Feb-25 08:00</td><td>13-Feb-25 08:00</td><td>13-Feb-25 10:00</td></tr>
+<tr><td>Completed</td><td>LGA9->KJFK</td><td>DD307</td><td>307PQ85L4</td><td>26</td><td>RST</td><td>TRLR507</td><td>18</td><td>44</td><td>13-Feb-25 08:30</td><td>13-Feb-25 08:30</td><td>13-Feb-25 10:00</td></tr>
+<tr><td>Loading in Progress</td><td>LGA9->KJFK</td><td>DD308</td><td>308PQ85L4</td><td>53</td><td>UVW</td><td>TRLR508</td><td>25</td><td>55</td><td>13-Feb-25 09:00</td><td>13-Feb-25 09:00</td><td>13-Feb-25 10:00</td></tr>
+<tr><td>Trailer Attached</td><td>LGA9->KJFK</td><td>DD309</td><td>309PQ85L4</td><td>26</td><td>XYZ</td><td>TRLR509</td><td>15</td><td>38</td><td>13-Feb-25 09:30</td><td>13-Feb-25 09:30</td><td>13-Feb-25 10:00</td></tr>
+<tr><td>Completed</td><td>LGA9->KJFK</td><td>DD310</td><td>310PQ85L4</td><td>53</td><td>AAA</td><td>TRLR510</td><td>16</td><td>42</td><td>13-Feb-25 10:00</td><td>13-Feb-25 10:00</td><td>13-Feb-25 10:00</td></tr>
+
+<tr><td>Scheduled</td><td>SIL8->HLA7-ABC</td><td>DD311</td><td>311PQ85L4</td><td>26</td><td>BBB</td><td>TRLR511</td><td>20</td><td>45</td><td>14-Feb-25 14:00</td><td>14-Feb-25 14:00</td><td>14-Feb-25 16:00</td></tr>
+<tr><td>Completed</td><td>SIL8->HLA7-ABC</td><td>DD312</td><td>312PQ85L4</td><td>53</td><td>CCC</td><td>TRLR512</td><td>19</td><td>43</td><td>14-Feb-25 14:30</td><td>14-Feb-25 14:30</td><td>14-Feb-25 16:00</td></tr>
+<tr><td>Loading in Progress</td><td>SIL8->HLA7-ABC</td><td>DD313</td><td>313PQ85L4</td><td>26</td><td>DDD</td><td>TRLR513</td><td>18</td><td>40</td><td>14-Feb-25 15:00</td><td>14-Feb-25 15:00</td><td>14-Feb-25 16:00</td></tr>
+<tr><td>Trailer Attached</td><td>SIL8->HLA7-ABC</td><td>DD314</td><td>314PQ85L4</td><td>53</td><td>EEE</td><td>TRLR514</td><td>21</td><td>46</td><td>14-Feb-25 15:30</td><td>14-Feb-25 15:30</td><td>14-Feb-25 16:00</td></tr>
+<tr><td>Completed</td><td>SIL8->HLA7-ABC</td><td>DD315</td><td>315PQ85L4</td><td>26</td><td>FFF</td><td>TRLR515</td><td>17</td><td>39</td><td>14-Feb-25 16:00</td><td>14-Feb-25 16:00</td><td>14-Feb-25 16:00</td></tr>
+
+<tr><td>Scheduled</td><td>SIL9->HLA8-XYZ</td><td>DD316</td><td>316PQ85L4</td><td>53</td><td>GGG</td><td>TRLR516</td><td>22</td><td>50</td><td>15-Feb-25 18:00</td><td>15-Feb-25 18:00</td><td>15-Feb-25 18:30</td></tr>
+<tr><td>Completed</td><td>SIL9->HLA8-XYZ</td><td>DD317</td><td>317PQ85L4</td><td>26</td><td>HHH</td><td>TRLR517</td><td>15</td><td>35</td><td>15-Feb-25 18:10</td><td>15-Feb-25 18:10</td><td>15-Feb-25 18:30</td></tr>
+<tr><td>Loading in Progress</td><td>SIL9->HLA8-XYZ</td><td>DD318</td><td>318PQ85L4</td><td>53</td><td>III</td><td>TRLR518</td><td>18</td><td>42</td><td>15-Feb-25 18:15</td><td>15-Feb-25 18:15</td><td>15-Feb-25 18:30</td></tr>
+<tr><td>Trailer Attached</td><td>SIL9->HLA8-XYZ</td><td>DD319</td><td>319PQ85L4</td><td>26</td><td>JJJ</td><td>TRLR519</td><td>20</td><td>48</td><td>15-Feb-25 18:20</td><td>15-Feb-25 18:20</td><td>15-Feb-25 18:30</td></tr>
+<tr><td>Completed</td><td>SIL9->HLA8-XYZ</td><td>DD320</td><td>320PQ85L4</td><td>53</td><td>KKK</td><td>TRLR520</td><td>24</td><td>52</td><td>15-Feb-25 18:30</td><td>15-Feb-25 18:30</td><td>15-Feb-25 18:30</td></tr>
+
+<tr><td>Scheduled</td><td>LGA9->KBWI</td><td>DD321</td><td>321PQ85L4</td><td>53</td><td>LLL</td><td>TRLR521</td><td>20</td><td>50</td><td>16-Feb-25 03:00</td><td>16-Feb-25 03:00</td><td>16-Feb-25 03:30</td></tr>
+<tr><td>Completed</td><td>LGA9->KBWI</td><td>DD322</td><td>322PQ85L4</td><td>26</td><td>MMM</td><td>TRLR522</td><td>18</td><td>45</td><td>16-Feb-25 03:10</td><td>16-Feb-25 03:10</td><td>16-Feb-25 03:30</td></tr>
+<tr><td>Loading in Progress</td><td>LGA9->KBWI</td><td>DD323</td><td>323PQ85L4</td><td>53</td><td>NNN</td><td>TRLR523</td><td>22</td><td>48</td><td>16-Feb-25 03:15</td><td>16-Feb-25 03:15</td><td>16-Feb-25 03:30</td></tr>
+<tr><td>Trailer Attached</td><td>LGA9->KBWI</td><td>DD324</td><td>324PQ85L4</td><td>26</td><td>OOO</td><td>TRLR524</td><td>14</td><td>36</td><td>16-Feb-25 03:20</td><td>16-Feb-25 03:20</td><td>16-Feb-25 03:30</td></tr>
+<tr><td>Completed</td><td>LGA9->KBWI</td><td>DD325</td><td>325PQ85L4</td><td>53</td><td>PPP</td><td>TRLR525</td><td>19</td><td>43</td><td>16-Feb-25 03:30</td><td>16-Feb-25 03:30</td><td>16-Feb-25 03:30</td></tr>
+
+<tr><td>Scheduled</td><td>SIL10->HLA9-DEF</td><td>DD326</td><td>326PQ85L4</td><td>26</td><td>QQQ</td><td>TRLR526</td><td>20</td><td>44</td><td>17-Feb-25 20:00</td><td>17-Feb-25 20:00</td><td>17-Feb-25 21:00</td></tr>
+<tr><td>Completed</td><td>SIL10->HLA9-DEF</td><td>DD327</td><td>327PQ85L4</td><td>53</td><td>RRR</td><td>TRLR527</td><td>18</td><td>40</td><td>17-Feb-25 20:10</td><td>17-Feb-25 20:10</td><td>17-Feb-25 21:00</td></tr>
+<tr><td>Loading in Progress</td><td>SIL10->HLA9-DEF</td><td>DD328</td><td>328PQ85L4</td><td>26</td><td>SSS</td><td>TRLR528</td><td>17</td><td>39</td><td>17-Feb-25 20:20</td><td>17-Feb-25 20:20</td><td>17-Feb-25 21:00</td></tr>
+<tr><td>Trailer Attached</td><td>SIL10->HLA9-DEF</td><td>DD329</td><td>329PQ85L4</td><td>53</td><td>TTT</td><td>TRLR529</td><td>21</td><td>46</td><td>17-Feb-25 20:30</td><td>17-Feb-25 20:30</td><td>17-Feb-25 21:00</td></tr>
+<tr><td>Completed</td><td>SIL10->HLA9-DEF</td><td>DD330</td><td>330PQ85L4</td><td>26</td><td>UUU</td><td>TRLR530</td><td>15</td><td>35</td><td>17-Feb-25 21:00</td><td>17-Feb-25 21:00</td><td>17-Feb-25 21:00</td></tr>
+
+        </tbody>
+    </table>
+
+    <script src="sss.js"></script>
+</body>
+</html>
